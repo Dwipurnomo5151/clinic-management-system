@@ -1,0 +1,11 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+        
+    },
+    "autoload": {
+        "classmap": [
+            "../framework/yii.php"
+        ]
+      }
+}

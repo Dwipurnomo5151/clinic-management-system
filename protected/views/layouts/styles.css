@@ -1,0 +1,107 @@
+
+		:root {
+			--sidebar-width: 280px;
+		}
+		
+		body {
+			min-height: 100vh;
+			background-color: #f8f9fa;
+		}
+
+		/* Sidebar Styles */
+		.sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: var(--sidebar-width);
+			height: 100vh;
+			background: #233446;
+			z-index: 1000;
+			transition: all 0.3s ease;
+		}
+
+		.sidebar-header {
+			padding: 20px;
+			background: #1a2734;
+		}
+
+		.sidebar .nav-link {
+			padding: 12px 20px;
+			color: #fff;
+			border-radius: 5px;
+			margin: 4px 10px;
+			transition: all 0.3s;
+		}
+
+		.sidebar .nav-link:hover {
+			background: rgba(255,255,255,0.1);
+		}
+
+		.sidebar .nav-link.active {
+			background: #0d6efd;
+		}
+
+		.sidebar .nav-link i {
+			width: 24px;
+			text-align: center;
+			margin-right: 8px;
+		}
+
+		/* Main Content Styles */
+		.main-content {
+			margin-left: var(--sidebar-width);
+			min-height: 100vh;
+			transition: all 0.3s ease;
+		}
+
+		.top-navbar {
+			background: #fff;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		/* Cards & Stats */
+		.stat-card {
+			border: none;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			transition: transform 0.2s;
+		}
+
+		.stat-card:hover {
+			transform: translateY(-5px);
+		}
+
+		.stat-card .icon {
+			width: 48px;
+			height: 48px;
+			background: rgba(13, 110, 253, 0.1);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			color: #0d6efd;
+		}
+
+		/* User Profile */
+		.user-profile img {
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			.sidebar {
+				margin-left: calc(var(--sidebar-width) * -1);
+			}
+			
+			.sidebar.show {
+				margin-left: 0;
+			}
+			
+			.main-content {
+				margin-left: 0;
+			}
+		}
+	
