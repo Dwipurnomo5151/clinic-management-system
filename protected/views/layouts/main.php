@@ -475,25 +475,31 @@
 
 			<main class="main-content">
 				<!-- Top Navbar -->
+				<!-- Top Navbar -->
 				<nav class="navbar navbar-expand-lg top-navbar">
-					<div class="ms-auto">
-						<div class="user-profile dropdown">
-							<button class="btn btn-link dropdown-toggle border-0 p-0 d-flex align-items-center text-decoration-none" type="button" data-bs-toggle="dropdown">
-								<div class="user-info">
-									<div class="name"><?php echo Yii::app()->user->name; ?></div>
-									<div class="role"><?php echo ucfirst(Yii::app()->user->getState('role')); ?></div>
-								</div>
-								<div class="user-avatar">
-									<i class="fas fa-user-circle"></i>
-								</div>
-							</button>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
-									<i class="fas fa-sign-out-alt me-2"></i> Logout
-								</a></li>
-							</ul>
-						</div>
-					</div>
+				<!-- Tambahkan tombol hamburger -->
+				<button class="navbar-toggler d-lg-none" type="button" id="sidebar-toggle">
+				<i class="fas fa-bars"></i>
+				</button>
+				
+				<div class="ms-auto">
+				<div class="user-profile dropdown">
+				<button class="btn btn-link dropdown-toggle border-0 p-0 d-flex align-items-center text-decoration-none" type="button" data-bs-toggle="dropdown">
+				<div class="user-info">
+				<div class="name"><?php echo Yii::app()->user->name; ?></div>
+				<div class="role"><?php echo ucfirst(Yii::app()->user->getState('role')); ?></div>
+				</div>
+				<div class="user-avatar">
+				<i class="fas fa-user-circle"></i>
+				</div>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+				<li><a class="dropdown-item" href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
+				<i class="fas fa-sign-out-alt me-2"></i> Logout
+				</a></li>
+				</ul>
+				</div>
+				</div>
 				</nav>
 
 				<!-- Page Content -->
@@ -510,7 +516,8 @@
 	<!-- Custom JavaScript -->
 	<script>
 		// Sidebar Toggle
-		document.getElementById('sidebar-toggle').addEventListener('click', function() {
+		document.getElementById('sidebar-toggle').addEventListener('click', function(e) {
+			e.preventDefault();
 			document.querySelector('.sidebar').classList.toggle('show');
 		});
 

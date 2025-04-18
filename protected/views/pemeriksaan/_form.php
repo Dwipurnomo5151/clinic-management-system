@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success btn-sm mt-2" onclick="addTindakan()"><i class="fas fa-plus"></i> Tambah Tindakan</button>
+                    <button type="button" class="btn btn-success btn-sm mt-2 mb-2" onclick="addTindakan()"><i class="fas fa-plus"></i> Tambah Tindakan</button>
                     <small class="form-text text-muted">Klik tombol "Tambah Tindakan" untuk menambah tindakan medis lainnya</small>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success btn-sm mt-2" onclick="addResep()"><i class="fas fa-plus"></i> Tambah Obat</button>
+                    <button type="button" class="btn btn-success btn-sm mt-2 mb-2" onclick="addResep()"><i class="fas fa-plus"></i> Tambah Obat</button>
                 </div>
             </div>
 

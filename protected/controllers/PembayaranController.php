@@ -102,4 +102,29 @@ class PembayaranController extends Controller
             'model'=>$model,
         ));
     }
-} 
+
+    public function actionExportPdf($id)
+    {
+        $pendaftaran = Pendaftaran::model()->findByPk($id);
+        if(!$pendaftaran) {
+            throw new CHttpException(404, 'Data tidak ditemukan.');
+        }
+    
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'margin_left' => 10,
+            'margin_right' => 10,
+            'margin_top' => 15,
+            'margin_bottom' => 15,
+            'margin_header' => 10,
+            'margin_footer' => 10,
+        ]);
+    
+        $html = $this->renderPartial('_pdf', array(
+            'pendaftaran' => $pendaftaran
+        ), true);
+    
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('Kwitansi-'.$pendaftaran->id.'.pdf', 'D');
+    }
+}

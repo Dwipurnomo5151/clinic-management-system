@@ -36,7 +36,7 @@ $this->pageTitle = 'Pembayaran';
 
     <div class="col-md-6">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            <div class="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 class="m-0 font-weight-bold text-primary">Rincian Tagihan</h6>
             </div>
             <div class="card-body">
@@ -85,7 +85,7 @@ $this->pageTitle = 'Pembayaran';
                     )); ?>
                     <?php echo CHtml::error($model, 'jumlah_bayar'); ?>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <?php echo CHtml::submitButton('Bayar', array(
                         'class'=>'btn btn-success',
                         'onclick'=>'return confirm("Yakin ingin melakukan pembayaran?")'
@@ -98,4 +98,4 @@ $this->pageTitle = 'Pembayaran';
             </div>
         </div>
     </div>
-</div> 
+</div>
