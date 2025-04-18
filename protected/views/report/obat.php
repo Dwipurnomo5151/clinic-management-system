@@ -37,36 +37,100 @@ $this->pageTitle = 'Laporan Obat';
 </div>
 
 <?php if (!empty($data)): ?>
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <canvas id="obatChart" height="400"></canvas>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div style="height: 300px; width: 100%; max-width: 800px; margin: 0 auto;">
+                <canvas id="obatChart"></canvas>
+            </div>
+        </div>
     </div>
-</div>
 
-<?php
-Yii::app()->clientScript->registerScript('chart', "
-    var ctx = document.getElementById('obatChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: " . CJSON::encode(array_map(function($item) { return $item->obat->nama; }, $data)) . ",
-            datasets: [{
-                label: 'Jumlah Resep',
-                data: " . CJSON::encode(array_map(function($item) { return $item->jumlah; }, $data)) . ",
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    
+    <script>
+        var ctx = document.getElementById('obatChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo CJSON::encode(array_map(function($item) { 
+                    return $item->obat->nama; 
+                }, $data)); ?>,
+                datasets: [{
+                    label: 'Jumlah Resep',
+                    data: <?php echo CJSON::encode(array_map(function($item) { 
+                        return $item->jumlah; 
+                    }, $data)); ?>,
+                    backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                    borderColor: '#388e3c',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Statistik Penggunaan Obat',
+                    fontSize: 16,
+                    padding: 20
+                },
+                tooltips: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                    bodyFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                    cornerRadius: 4,
+                    xPadding: 10,
+                    yPadding: 10
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45,
+                            fontSize: 11,
+                            fontColor: '#666'
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            borderDash: [2, 2],
+                            color: '#e0e0e0'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            fontSize: 11,
+                            fontColor: '#666',
+                            maxTicksLimit: 5,
+                            padding: 10
+                        }
+                    }]
+                },
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 0,
+                        bottom: 10
+                    }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutQuart'
                 }
             }
-        }
-    });
-");
-?>
-<?php endif; ?> 
+        });
+    </script>
+<?php else: ?>
+    <div class="alert alert-info">
+        Pilih tanggal dan klik tampilkan untuk melihat data.
+    </div>
+<?php endif; ?>
